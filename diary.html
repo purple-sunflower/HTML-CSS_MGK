@@ -106,7 +106,13 @@
               </div>
     
               <div class="button-box">
-                  <button class="diary-button font-neo"><i class="fas fa-lock"></i> 보혜의 비밀일기</button>
+                  <button class="diary-button font-neo" onclick="getTextFile()">
+                    <i class="fas fa-lock"></i> 보혜의 비밀일기
+                  </button>
+                </div>
+                <div class="diary-box" id="secret-box">
+                  <div class="diary-date">보혜의 비밀일기</div>
+                  <div class="diary-text font-kyobohand" id="secret-diary"></div>
                 </div>
             </div>
           </div>
@@ -115,10 +121,31 @@
           <a href="./MiniHomepage.html">홈</a>
           <a href="./diary.html">다이어리</a>
           <a href="./photo.html">사진첩</a>
-          <a href="#">방명록</a>
+          <a href="./guestbook.html">방명록</a>
         </div>
       </div>
     </div>
   </div>
+  <script>
+    function getTextFile() {
+            var input = document.createElement("input");
+            input.type = "file";
+            input.accept = "text/plain";
+            input.onchange = function (event) {
+                processFile(event.target.files[0]);
+            };
+            input.click();
+          }
+
+        function processFile(file) {
+            var reader = new FileReader();
+            reader.readAsText(file, "utf-8");
+            
+            reader.onload = function () {
+                document.getElementById("secret-diary").innerText = reader.result;
+                document.getElementById("secret-box").style.display = "block";
+            };
+          }
+  </script>
 </body>
 </html>

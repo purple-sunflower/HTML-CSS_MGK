@@ -96,3 +96,7 @@
     margin-right: 0.7rem;
     font-size: 0.7rem;
 }
+
+#secret-box {
+    display: none;
+}
